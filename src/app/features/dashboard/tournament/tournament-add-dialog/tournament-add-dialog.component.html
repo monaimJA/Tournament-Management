@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Créer un Tournoi</h1>
+<div mat-dialog-content>
+    <form [formGroup]="addTournamentFormGroup">
+        <div class="form-group">
+            <label for="tournamentLabel" class="form-label">Nom</label>
+            <input type="text" class="form-control" id="tournamentLabel" formControlName="label">
+        </div>
+        <div class="form-group">
+            <label for="startDate" class="form-label">Date de Début</label>
+            <input type="date" class="form-control" id="startDate" formControlName="startDate">
+        </div>
+        <div class="form-group">
+            <label for="endDate" class="form-label">Date de Fin</label>
+            <input type="date" class="form-control" id="endDate" formControlName="endDate">
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button type="button" class="btn btn-secondary" mat-button (click)="onClose()">Fermer</button>
+    <button [disabled]="!addTournamentFormGroup.valid" class="btn btn-success" mat-button (click)="addTournament()">Sauvegarder</button>
+</div>

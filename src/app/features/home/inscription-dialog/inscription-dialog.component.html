@@ -1,0 +1,58 @@
+<h2 mat-dialog-title>Registration</h2>
+<mat-dialog-content>
+  <form [formGroup]="equipeForm" (ngSubmit)="onSubmit()">
+    <h4>Joueurs</h4>
+    <div formArrayName="joueurs">
+      <div *ngFor="let joueur of joueurs.controls; let i = index">
+        <div [formGroupName]="i">
+          <mat-form-field>
+            <input matInput formControlName="nom" placeholder="Nom du joueur">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput formControlName="prénom" placeholder="Prénom du joueur">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput formControlName="email" placeholder="Email du joueur">
+            <mat-error *ngIf="joueur.get('email')?.errors?.['email']">Veuillez entrer une adresse email valide.</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput formControlName="phoneNumber" placeholder="Numéro de téléphone du joueur">
+            <mat-error *ngIf="joueur.get('phoneNumber')?.errors?.['pattern']">Le numéro de téléphone doit être composé de 10 chiffres.</mat-error>
+          </mat-form-field>
+          <button mat-button type="button" (click)="removeJoueur(i)">Supprimer</button>
+        </div>
+      </div>
+    </div>
+    <button mat-button type="button" (click)="addJoueur()" [disabled]="joueurs.length >= 5">Ajouter joueur</button>
+
+    <h4>Remplacants</h4>
+    <div formArrayName="remplacants">
+      <div *ngFor="let remplacant of remplacants.controls; let i = index">
+        <div [formGroupName]="i">
+          <mat-form-field>
+            <input matInput formControlName="nom" placeholder="Nom du remplaçant">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput formControlName="prénom" placeholder="Prénom du remplaçant">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput formControlName="email" placeholder="Email du remplaçant">
+            <mat-error *ngIf="remplacant.get('email')?.errors?.['email']">Veuillez entrer une adresse email valide.</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput formControlName="phoneNumber" placeholder="Numéro de téléphone du remplaçant">
+            <mat-error *ngIf="remplacant.get('phoneNumber')?.errors?.['pattern']">Le numéro de téléphone doit être composé de 10 chiffres.</mat-error>
+          </mat-form-field>
+          <button mat-button type="button" (click)="removeRemplacant(i)">Supprimer</button>
+        </div>
+      </div>
+    </div>
+    <button mat-button type="button" (click)="addRemplacant()" [disabled]="remplacants.length >= 3">Ajouter remplaçant</button>
+
+    <button mat-raised-button type="submit">Enregistrer</button>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Save</button>
+</mat-dialog-actions>

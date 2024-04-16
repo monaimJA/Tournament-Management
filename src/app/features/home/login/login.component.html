@@ -1,0 +1,10 @@
+<form class="login-form" (ngSubmit)="login()">
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Nom d'utilisateur" [(ngModel)]="username" name="username" required>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput type="password" placeholder="Mot de passe" [(ngModel)]="password" name="password" required>
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit">Connexion</button>
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+</form>
