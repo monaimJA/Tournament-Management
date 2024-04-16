@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {MatchService} from "../../../core/services/match/match.service";
 
 @Component({
   selector: 'app-latest-matches',
@@ -6,5 +7,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./latest-matches.component.css']
 })
 export class LatestMatchesComponent {
+
+    matches!: any[];
+
+    constructor(private matchService: MatchService) { }
+
+    ngOnInit(): void {
+        this.getAllMatches();
+    }
+
+    getAllMatches(): void {
+        this.matchService.getLatestMatchesInCurrentTournament()
+            .subscribe(matches => this.matches = matches);
+        console.log(this.matches);
+    }
 
 }

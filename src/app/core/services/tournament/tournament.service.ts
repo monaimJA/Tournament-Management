@@ -41,4 +41,7 @@ this.backendHost = apiUrl;
   deleteTournament(id: number): Observable<any> {
     return this.http.delete(this.backendHost+"/delete/" + id);
   }
+  changeTournamentStatus(tournamentId : number) : Observable<Array<Tournament>>{
+    return this.http.get<any>(this.backendHost+"/changeStatus/"+tournamentId);
+  }
 }

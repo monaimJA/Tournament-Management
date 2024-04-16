@@ -3,5 +3,5 @@ export interface Tournament {
     label: string;
     endDate: string;
     startDate: string;
-    statusTournament: string;
+    statusTournamentAndMatch: string;
 }

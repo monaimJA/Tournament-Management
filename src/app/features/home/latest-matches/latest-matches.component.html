@@ -1,105 +1,40 @@
 <div class="container" style="margin-top: 50px;">
-  <div class="row">
-    <div class="col-12 title-section">
-      <h2 class="heading" style="color: #0d0f13">Latest Matches</h2>
+    <div class="row">
+        <div class="col-12 title-section">
+            <h2 class="heading" style="color: #0d0f13">Latest Matches</h2>
+        </div>
     </div>
-  </div>
 
+    <div class="row mt-5" *ngFor="let match of matches">
+        <div class="col-lg-12">
 
-  <div class="row mt-5">
-    <div class="col-lg-12">
+            <div class="d-flex team-vs">
+              <span class="score">{{match.scoreTeam1}}-{{match.scoreTeam2}}</span>
+                <div class="team-1 w-50">
+                    <div class="team-details w-100 text-center">
+                        <!-- Affiche les détails de l'équipe 1 et les joueurs -->
+                        <h3 style="font-size: 50px;">{{ match.team1Name }}<span>{{ match.nameWinnerTeam === match.team1Name ? '(win)' : '(loss)' }}</span></h3>
+                        <ul class="list-unstyled">
+                            <!--<li *ngFor="let player of match.namePlayersTeam1" >{{ player }}</li>-->
+                            <ul class="list-unstyled">
+                                <li *ngFor="let player of match.playersTeam1; let i = index">{{ i + 1 }}. {{ player }}</li>
+                            </ul>
 
-      <div class="d-flex team-vs">
-        <span class="score">4-1</span>
-        <div class="team-1 w-50">
-          <div class="team-details w-100 text-center">
-            <img src="assets/images/logo_1.png" alt="Image" class="img-fluid">
-            <h3>LA LEGA <span>(win)</span></h3>
-            <ul class="list-unstyled">
-              <li>Anja Landry (7)</li>
-              <li>Eadie Salinas (12)</li>
-              <li>Ashton Allen (10)</li>
-              <li>Baxter Metcalfe (5)</li>
-            </ul>
-          </div>
+                        </ul>
+                    </div>
+                </div>
+                <div class="team-2 w-50">
+                    <div class="team-details w-100 text-center">
+                        <!-- Affiche les détails de l'équipe 2 et les joueurs -->
+                        <h3 style="font-size: 50px;">{{ match.team2Name }}<span>{{ match.nameWinnerTeam === match.team2Name ? '(win)' : '(loss)' }}</span></h3>
+                        <ul class="list-unstyled">
+                           <!-- <li *ngFor="let player of match.namePlayersTeam2">{{ player }}</li>-->
+                            <li *ngFor="let player of match.playersTeam2; let i = index">{{ i + 1 }}. {{ player }}</li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="team-2 w-50">
-          <div class="team-details w-100 text-center">
-            <img src="assets/images/logo_2.png" alt="Image" class="img-fluid">
-            <h3>JUVENDU <span>(loss)</span></h3>
-            <ul class="list-unstyled">
-              <li>Macauly Green (3)</li>
-              <li>Arham Stark (8)</li>
-              <li>Stephan Murillo (9)</li>
-              <li>Ned Ritter (5)</li>
-            </ul>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
-  <div class="row mt-5">
-    <div class="col-lg-12">
-
-      <div class="d-flex team-vs">
-        <span class="score">4-1</span>
-        <div class="team-1 w-50">
-          <div class="team-details w-100 text-center">
-            <img src="assets/images/logo_1.png" alt="Image" class="img-fluid">
-            <h3>LA LEGA <span>(win)</span></h3>
-            <ul class="list-unstyled">
-              <li>Anja Landry (7)</li>
-              <li>Eadie Salinas (12)</li>
-              <li>Ashton Allen (10)</li>
-              <li>Baxter Metcalfe (5)</li>
-            </ul>
-          </div>
-        </div>
-        <div class="team-2 w-50">
-          <div class="team-details w-100 text-center">
-            <img src="assets/images/logo_2.png" alt="Image" class="img-fluid">
-            <h3>JUVENDU <span>(loss)</span></h3>
-            <ul class="list-unstyled">
-              <li>Macauly Green (3)</li>
-              <li>Arham Stark (8)</li>
-              <li>Stephan Murillo (9)</li>
-              <li>Ned Ritter (5)</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row mt-5 mb-5">
-    <div class="col-lg-12">
-
-      <div class="d-flex team-vs">
-        <span class="score">4-1</span>
-        <div class="team-1 w-50">
-          <div class="team-details w-100 text-center">
-            <img src="assets/images/logo_1.png" alt="Image" class="img-fluid">
-            <h3>LA LEGA <span>(win)</span></h3>
-            <ul class="list-unstyled">
-              <li>Anja Landry (7)</li>
-              <li>Eadie Salinas (12)</li>
-              <li>Ashton Allen (10)</li>
-              <li>Baxter Metcalfe (5)</li>
-            </ul>
-          </div>
-        </div>
-        <div class="team-2 w-50">
-          <div class="team-details w-100 text-center">
-            <img src="assets/images/logo_2.png" alt="Image" class="img-fluid">
-            <h3>JUVENDU <span>(loss)</span></h3>
-            <ul class="list-unstyled">
-              <li>Macauly Green (3)</li>
-              <li>Arham Stark (8)</li>
-              <li>Stephan Murillo (9)</li>
-              <li>Ned Ritter (5)</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
