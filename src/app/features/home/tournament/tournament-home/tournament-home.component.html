@@ -3,13 +3,28 @@
     <div class="col-lg-5 ml-auto">
       <h1 class="text-white"> Welcome to Capegemini Cup Event</h1>
     </div>
-    <div class="card" style="width: 18rem; margin: 50px auto;">
+
+  <div *ngIf="!currentTournament" class="card" style="width: 18rem; margin: 50px auto;">
       <img src="assets/images/logo_1.png" class="card-img-top" alt="">
       <div class="card-body">
-        <h5 class="card-title">Tournament 2024-2025</h5>
-        <p class="card-text">This tournament for all collaborators of rabat and casablanca sites </p>
-        <button color="primary" mat-raised-button routerLink="/home/inscription">Inscription</button>
+        <h5 class="card-title">Tournament</h5>
+        <p class="card-text">Welcome to capMonde No current Tournament for the moment </p>
+        <button color="primary" disabled mat-raised-button routerLink="/home/inscription">Inscription</button>
       </div>
+  </div>
+
+    <div *ngIf="currentTournament" class="card" style="width: 18rem; margin: 50px auto;">
+      <img src="assets/images/logo_1.png" class="card-img-top" alt="">
+      <div class="card-body">
+        <h5 class="card-title">Tournament : {{currentTournament.label}}</h5>
+        <p class="card-text">Welcome to capMonde starting the {{currentTournament.startDate}} </p>
+        <!-- <button color="primary" mat-raised-button (click)="openDialog()">Inscription</button> -->
+        <button color="primary" [disabled]="!inscriptionOk()" mat-raised-button routerLink="/home/inscription">Inscription</button>
     </div>
+
+
+ 
+    
   </div>
 </div>
+

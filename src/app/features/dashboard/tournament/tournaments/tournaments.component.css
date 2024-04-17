@@ -27,9 +27,9 @@ table {
     padding: 20px;
 }
 
-.mat-table {
-    font-family: 'Times New Roman', Times, serif;
-}
+/*.mat-table {*/
+/*    font-family: 'Times New Roman', Times, serif;*/
+/*}*/
 .mat-table.mat-header-row {
     background-color: #befaf9;
 }

@@ -4,4 +4,5 @@ export interface Tournament {
     endDate: string;
     startDate: string;
     statusTournamentAndMatch: string;
+    statusTournament: string;
 }

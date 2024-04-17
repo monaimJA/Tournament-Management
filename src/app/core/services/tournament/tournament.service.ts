@@ -42,4 +42,7 @@ export class TournamentService {
     changeTournamentStatus(tournamentId : number) : Observable<Array<Tournament>>{
         return this.http.get<any>(this.backendHost+"/changeStatus/"+tournamentId);
     }
+    getCurrentTournament() : Observable<Tournament>{
+        return this.http.get<Tournament>(this.backendHost+"/current");
+      }
 }
