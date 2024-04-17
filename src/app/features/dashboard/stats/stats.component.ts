@@ -4,6 +4,7 @@ import {Product} from "../../../demo/api/product";
 import {debounceTime, Subscription} from "rxjs";
 import {ProductService} from "../../../demo/service/product.service";
 import {LayoutService} from "../../../layout/service/app.layout.service";
+import {PlayerService} from "../../../core/services/player/player.service";
 
 @Component({
   selector: 'app-stats',
@@ -15,13 +16,16 @@ export class StatsComponent {
 
     products!: Product[];
 
+    scorers!: any;
+
     chartData: any;
 
     chartOptions: any;
 
     subscription!: Subscription;
 
-    constructor(private productService: ProductService, public layoutService: LayoutService) {
+    constructor(private productService: ProductService, public layoutService: LayoutService,
+                private playerService:PlayerService) {
         this.subscription = this.layoutService.configUpdate$
             .pipe(debounceTime(25))
             .subscribe((config) => {
@@ -37,6 +41,15 @@ export class StatsComponent {
             { label: 'Add New', icon: 'pi pi-fw pi-plus' },
             { label: 'Remove', icon: 'pi pi-fw pi-minus' }
         ];
+
+        this.playerService.getScorers().subscribe((scorer)=>{
+            this.scorers=scorer;
+        },
+            (error)=>{
+            console.log(error);
+            })
+
+
     }
 
     initChart() {
