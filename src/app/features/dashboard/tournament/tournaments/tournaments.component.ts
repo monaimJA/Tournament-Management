@@ -25,8 +25,10 @@ export class TournamentsComponent implements OnInit, AfterViewInit {
   @ViewChild('createTournamentModal') createTournamentModal: any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   showFirstLastButton: boolean = true;
+  isRegistrationPhase: boolean = false;
 
-  constructor(private dialog: MatDialog, private router: Router, private fb: FormBuilder,
+
+    constructor(private dialog: MatDialog, private router: Router, private fb: FormBuilder,
               private playerService:PlayerService,
               private tournamentService: TournamentService,
               private route: ActivatedRoute) {
@@ -82,6 +84,7 @@ export class TournamentsComponent implements OnInit, AfterViewInit {
         dialogRef.afterClosed().subscribe({
             next: data => {
                 this.getTournaments();
+                this.isRegistrationPhase=true;
             },
             error: err => {
                 console.log(err);
@@ -105,6 +108,7 @@ export class TournamentsComponent implements OnInit, AfterViewInit {
     onStatusChange($event: MatSelectChange, tournament : Tournament) {
         this.tournamentService.updateTournament(tournament.id, tournament).subscribe(
             (tournament => {
+                this.isRegistrationPhase=false;
                 this.playerService.notifyPlayers(tournament.id, $event.value).subscribe((
                     data => {
                         this.getTournaments();
@@ -115,4 +119,18 @@ export class TournamentsComponent implements OnInit, AfterViewInit {
 
 
     }
+    disableOption(optionValue: string, selectedValue: string): boolean {
+        const phasesOrder = [
+            "INSCRIPTION",
+            "EIGHT_FINAL",
+            "QUART_FINAL",
+            "DEMI_FINAL",
+            "FINAL",
+            "FINISHED"
+        ];
+        const selectedIndex = phasesOrder.indexOf(selectedValue);
+        const optionIndex = phasesOrder.indexOf(optionValue);
+        return optionIndex < selectedIndex || optionIndex > selectedIndex + 1;
+    }
+
 }
