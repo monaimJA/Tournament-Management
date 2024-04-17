@@ -13,18 +13,19 @@
       </div>
   </div>
 
-    <div *ngIf="currentTournament" class="card" style="width: 18rem; margin: 50px auto;">
+    <div *ngIf="currentTournament" class="card" style="width: 19rem; margin: 50px auto;">
       <img src="assets/images/logo_1.png" class="card-img-top" alt="">
       <div class="card-body">
-        <h5 class="card-title">Tournament : {{currentTournament.label}}</h5>
-        <p class="card-text">Welcome to capMonde starting the {{currentTournament.startDate}} </p>
+        <h5 class="card-title">{{currentTournament.label}}</h5>
+        <p class="card-text">This tournament will be started at {{currentTournament.startDate}} and ends at {{currentTournament.endDate}}</p>
         <!-- <button color="primary" mat-raised-button (click)="openDialog()">Inscription</button> -->
         <button color="primary" [disabled]="!inscriptionOk()" mat-raised-button routerLink="/home/inscription">Inscription</button>
     </div>
 
 
- 
-    
+
+
   </div>
 </div>
 
+</div>

@@ -29,12 +29,6 @@ export class TeamListComponent implements OnInit{
   ngOnInit() {
     this.tournamentService.getTournaments().subscribe((data: any[]) => {
       this.tournois = data;
-      if (this.tournois.length > 0) {
-        this.teamService.getTeamsIntournament(this.tournois[0].id).subscribe((data: any[]) => {
-          this.equipes = data;
-        });
-      }
-      
     });
   }
   onTournoiSelect(event: any) {

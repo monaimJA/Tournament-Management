@@ -906,7 +906,7 @@ h1, h2, h3, h4, h5,
     top: 0;
     left: 0;
     bottom: 0;
-    background: #ee1e46; }
+    background: rgb(1, 111, 170); }
 
 .custom-table {
     margin-bottom: 0; }
