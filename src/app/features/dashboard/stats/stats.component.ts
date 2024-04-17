@@ -18,6 +18,8 @@ export class StatsComponent {
 
     scorers!: any;
 
+    cards!: any;
+
     chartData: any;
 
     chartOptions: any;
@@ -48,8 +50,12 @@ export class StatsComponent {
             (error)=>{
             console.log(error);
             })
-
-
+        this.playerService.getNomberCardsByPlayer().subscribe((cards)=>{
+                this.cards=cards;
+            },
+            (error)=>{
+                console.log(error);
+            })
     }
 
     initChart() {

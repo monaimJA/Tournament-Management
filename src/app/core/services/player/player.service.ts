@@ -50,4 +50,7 @@ export class PlayerService {
   getScorers(): Observable<any> {
       return this.http.get<any>(`${this.apiUrlBack}/scorers`);
   }
+    getNomberCardsByPlayer(): Observable<any> {
+        return this.http.get<any>(`${this.apiUrlBack}/cards`);
+    }
 }

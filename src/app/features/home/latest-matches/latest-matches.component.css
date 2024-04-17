@@ -707,7 +707,7 @@ h1, h2, h3, h4, h5,
 .team-vs .team-2:before {
     position: absolute;
     background: #f6d743;
-    background: #ee1e46;
+    background: rgb(1, 111, 170);
     content: "";
     left: -12%;
     right: 0;
