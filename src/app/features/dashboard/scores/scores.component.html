@@ -1,0 +1,48 @@
+<div class="container mt-5">
+  <table mat-table [dataSource]="matches" class="mat-elevation-z8">
+    <ng-container matColumnDef="team1">
+      <th mat-header-cell *matHeaderCellDef> Team 1 </th>
+      <td mat-cell *matCellDef="let match"> {{match.team1Name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="team2">
+      <th mat-header-cell *matHeaderCellDef> Team 2 </th>
+      <td mat-cell *matCellDef="let match"> {{match.team2Name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="score1">
+      <th mat-header-cell *matHeaderCellDef> Score Team 1 </th>
+      <td mat-cell *matCellDef="let match">
+        <input type="number" [(ngModel)]="match.scoreTeam1" (change)="updateWinner(match)">
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="score2">
+      <th mat-header-cell *matHeaderCellDef> Score Team 2 </th>
+      <td mat-cell *matCellDef="let match">
+        <input type="number" [(ngModel)]="match.scoreTeam2" (change)="updateWinner(match)">
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="winner">
+      <th mat-header-cell *matHeaderCellDef> Winner </th>
+      <td mat-cell *matCellDef="let match"> {{calculateWinner(match)}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="phase">
+      <th mat-header-cell *matHeaderCellDef> Phase </th>
+      <td mat-cell *matCellDef="let match"> {{match.statusTournamentAndMatch}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let match">
+        <button mat-raised-button color="primary" (click)="saveMatch(match)">Save</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+</div>

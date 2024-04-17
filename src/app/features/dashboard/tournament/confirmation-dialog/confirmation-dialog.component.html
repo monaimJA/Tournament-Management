@@ -1,0 +1,6 @@
+<h1 mat-dialog-title>Confirmation</h1>
+<div mat-dialog-content>Etes-vous sûr de supprimer ce tournoi ?</div>
+<div mat-dialog-actions>
+    <button mat-button class="btn btn-danger m-3" (click)="onCancel()">Annuler</button>
+    <button mat-button class="btn btn-success" color="warn" (click)="onConfirm()" cdkFocusInitial>Confirmer</button>
+</div>

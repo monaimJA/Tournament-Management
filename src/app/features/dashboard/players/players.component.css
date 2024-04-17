@@ -1,0 +1,8 @@
+table {
+  width: 100%;
+}
+.custom-table {
+  background-color: #befaf9; /* Set the background color for the table */
+  border-radius: 10px; /* Add rounded corners to the table */
+  overflow: hidden; /* Hide any overflow content */
+}

@@ -1,0 +1,63 @@
+<div class="container mt-5">
+  <div class="center">
+    <h1>participants</h1>
+    
+    <div class="space">
+      <mat-form-field style="width: 80%;">
+        <mat-label>Choisir un tournoi</mat-label>
+        <mat-select (selectionChange)="onTournoiSelect($event.value)">
+          <mat-option *ngFor="let tournoi of tournois" [value]="tournoi.id">{{ tournoi.label }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      </div>
+  </div>
+
+<div *ngIf="equipes.length>0">
+  <div class="center">
+    <h3>team list</h3>
+  </div>
+  <table class="mat-table" >
+    <thead>
+      <tr>
+        <th class="mat-header-cell">equipe</th>
+        <th class="mat-header-cell">site</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="mat-row" *ngFor="let equipe of equipes" (click)="onEquipeSelect(equipe.id)">
+        <td class="mat-cell">{{ equipe.name }}</td>
+        <td class="mat-cell">{{ equipe.site.name }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+  <div *ngIf="joueurs.length>0 && equipes.length>0">
+    <div class="center">
+      <h3>player list</h3>
+    </div>
+    <table mat-table [dataSource]="dataSource" class="custom-table">
+      <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>First Name</th>
+        <td mat-cell *matCellDef="let joueur">{{ joueur.firstName }}</td>
+      </ng-container>
+      <ng-container matColumnDef="lastName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</th>
+        <td mat-cell *matCellDef="let joueur">{{ joueur.lastName }}</td>
+      </ng-container>
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+        <td mat-cell *matCellDef="let joueur">{{ joueur.email }}</td>
+      </ng-container>
+      <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone</th>
+        <td mat-cell *matCellDef="let joueur">{{ joueur.phoneNumber }}</td>
+      </ng-container>
+      
+      <tr mat-header-row *matHeaderRowDef="['firstName', 'lastName', 'email', 'phone']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['firstName', 'lastName', 'email', 'phone'];"></tr>
+    </table>
+        <mat-paginator [length]="joueurs.length" [pageSize]="pageSize" (page)="onPageChange($event)"></mat-paginator>
+  </div>
+</div>

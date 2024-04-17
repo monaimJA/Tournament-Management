@@ -1,0 +1,47 @@
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+div.mat-dialog-actions {
+    display: flex;
+    justify-content: center;
+}
+
+button.mat-button.btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+button.mat-button.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+button.mat-button.btn-success {
+    background-color: #28a745;
+    color: #fff;
+}
+
+button.mat-button.btn-success:hover {
+    background-color: #218838;
+}
