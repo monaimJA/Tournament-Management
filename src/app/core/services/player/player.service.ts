@@ -47,4 +47,7 @@ export class PlayerService {
   notifyPlayers(tournamentId: number, statusTournamentAndMatch: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrlBack}/changeStatus/${tournamentId}?statusTournamentAndMatch=${statusTournamentAndMatch}`);
   }
+  getScorers(): Observable<any> {
+      return this.http.get<any>(`${this.apiUrlBack}/scorers`);
+  }
 }
