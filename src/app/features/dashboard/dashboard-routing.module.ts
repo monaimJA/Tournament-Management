@@ -5,8 +5,10 @@ import {TournamentsComponent} from "./tournament/tournaments/tournaments.compone
 import {authGuard} from "../../core/guards/auth.guard";
 import {ScoresComponent} from "./scores/scores.component";
 import {TeamListComponent} from "./team/team-list/team-list.component";
+import {StatsComponent} from "./stats/stats.component";
 
 const routes: Routes = [
+    {path:'stats',component:StatsComponent,canActivate:[authGuard]},
   {path:'players',component:PlayersComponent,canActivate:[authGuard]},
   {path:'tournament',component:TournamentsComponent,canActivate:[authGuard]},
   {path:'scores',component:ScoresComponent,canActivate:[authGuard]},

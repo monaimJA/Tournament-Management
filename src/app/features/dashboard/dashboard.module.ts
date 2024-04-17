@@ -25,6 +25,7 @@ import {ScoresComponent} from "./scores/scores.component";
 import {BrowserModule} from "@angular/platform-browser";
 import {TableModule} from "primeng/table";
 import {TeamListComponent} from "./team/team-list/team-list.component";
+import {StatsComponent} from "./stats/stats.component";
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import {TeamListComponent} from "./team/team-list/team-list.component";
     TournamentEditDialogComponent,
     ErrorDialogComponent,
     ScoresComponent,
-      TeamListComponent
+      TeamListComponent,
+      StatsComponent
   ],
     imports: [
         CommonModule,
