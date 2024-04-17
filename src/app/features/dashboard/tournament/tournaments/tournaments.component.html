@@ -3,27 +3,27 @@
     <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource">
             <ng-container matColumnDef="label">
-                <th mat-header-cell *matHeaderCellDef> Nom</th>
+                <th mat-header-cell *matHeaderCellDef>Label</th>
                 <td mat-cell *matCellDef="let tournament">{{ tournament.label }}</td>
             </ng-container>
             <ng-container matColumnDef="startDate">
-                <th mat-header-cell *matHeaderCellDef> Date de Début</th>
+                <th mat-header-cell *matHeaderCellDef> Start date</th>
                 <td mat-cell *matCellDef="let tournament"> {{ tournament.startDate | date : 'dd/MM/yyyy' }}</td>
             </ng-container>
             <ng-container matColumnDef="endDate">
-                <th mat-header-cell *matHeaderCellDef> Date de Fin</th>
+                <th mat-header-cell *matHeaderCellDef> End date</th>
                 <td mat-cell *matCellDef="let tournament"> {{ tournament.endDate | date : 'dd/MM/yyyy' }}</td>
             </ng-container>
             <ng-container matColumnDef="statusTournamentAndMatch">
-                <th mat-header-cell *matHeaderCellDef>Phase de Tournoi</th>
+                <th mat-header-cell *matHeaderCellDef>Tournament stages</th>
                 <td mat-cell *matCellDef="let tournament">
-                    <mat-select  [(ngModel)]="tournament.statusTournamentAndMatch" (selectionChange)="onStatusChange($event, tournament)">
-                        <mat-option value="INSCRIPTION">Inscription</mat-option>
-                        <mat-option value="EIGHT_FINAL">Eight final</mat-option>
-                        <mat-option value="QUART_FINAL">Quart de final</mat-option>
-                        <mat-option value="DEMI_FINAL">Demi final</mat-option>
-                        <mat-option value="FINAL">Final</mat-option>
-                        <mat-option value="FINISHED">Finished</mat-option>
+                    <mat-select [(ngModel)]="tournament.statusTournamentAndMatch" (selectionChange)="onStatusChange($event, tournament)">
+                        <mat-option value="INSCRIPTION" [disabled]="!isRegistrationPhase">Registration</mat-option>
+                        <mat-option value="EIGHT_FINAL" [disabled]="disableOption('EIGHT_FINAL', tournament.statusTournamentAndMatch)">Round of Eight</mat-option>
+                        <mat-option value="QUART_FINAL" [disabled]="disableOption('QUART_FINAL', tournament.statusTournamentAndMatch)">Quarterfinal</mat-option>
+                        <mat-option value="DEMI_FINAL" [disabled]="disableOption('DEMI_FINAL', tournament.statusTournamentAndMatch)">Semifinal</mat-option>
+                        <mat-option value="FINAL" [disabled]="disableOption('FINAL', tournament.statusTournamentAndMatch)">Final</mat-option>
+                        <mat-option value="FINISHED" [disabled]="disableOption('FINISHED', tournament.statusTournamentAndMatch)">Finished</mat-option>
                         <mat-option value="CANCELLED">Cancelled</mat-option>
                     </mat-select>
                 </td>
