@@ -7,5 +7,9 @@ export interface Team {
     players :PlayerDto[] ;
     tournament :Tournament;
 }
+export interface Site{
+    id:number;
+    name:string;
+}
 
 

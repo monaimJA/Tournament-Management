@@ -15,23 +15,39 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatIconModule} from "@angular/material/icon";
+import {LoginModule} from "../../demo/components/auth/login/login.module";
+import {ButtonModule} from "primeng/button";
+import {CheckboxModule} from "primeng/checkbox";
+import {InputTextModule} from "primeng/inputtext";
+import {PasswordModule} from "primeng/password";
+import {MatButtonModule} from "@angular/material/button";
+import {InscriptionComponent} from "./inscription/inscription.component";
+import {MatSelectModule} from "@angular/material/select";
 
 
 
 @NgModule({
-  declarations: [LoginComponent, HomeComponent, TournamentHomeComponent, LatestMatchesComponent, InscriptionDialogComponent],
-  imports: [
-    CommonModule,
-    HomeRoutingModule,
-    MatInputModule,
-    FormsModule,
-    SharedModule,
-    MatTableModule,
-    MatToolbarModule,
-    MatPaginatorModule,
-    MatDialogModule,
-    ReactiveFormsModule,
-    MatIconModule
-  ]
+  declarations: [LoginComponent, HomeComponent, TournamentHomeComponent, LatestMatchesComponent, InscriptionDialogComponent
+  ,InscriptionComponent],
+    imports: [
+        CommonModule,
+        HomeRoutingModule,
+        MatInputModule,
+        FormsModule,
+        SharedModule,
+        MatTableModule,
+        MatToolbarModule,
+        MatPaginatorModule,
+        MatDialogModule,
+        ReactiveFormsModule,
+        MatIconModule,
+        LoginModule,
+        ButtonModule,
+        CheckboxModule,
+        InputTextModule,
+        PasswordModule,
+        MatButtonModule,
+        MatSelectModule
+    ]
 })
 export class HomeModule { }

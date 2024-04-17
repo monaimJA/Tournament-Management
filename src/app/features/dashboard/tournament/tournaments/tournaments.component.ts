@@ -43,72 +43,76 @@ export class TournamentsComponent implements OnInit, AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  getTournaments() {
-    this.tournamentService.getTournaments().subscribe((
-        data => {
-          this.tournaments = data;
-          this.dataSource.data = this.tournaments;
-          console.log(this.dataSource.data);
-        }
-    ))
-  }
+    getTournaments() {
+        this.tournamentService.getTournaments().subscribe((
+            data => {
+                this.tournaments = data;
+                this.dataSource.data = this.tournaments;
+                console.log(this.dataSource.data);
+            }
+        ))
+    }
 
-  deleteTournament(tournament: Tournament) {
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent);
-    dialogRef.afterClosed().subscribe(
-        result => {
-          if (result) {
-            this.tournamentService.deleteTournament(tournament.id).subscribe({
-              next: (resp) => {
-                this.tournamentService.getTournaments().subscribe(tournaments => {
-                  this.tournaments = tournaments;
-                  this.getTournaments()
-                });
-              },
-              error: err => {
-                console.error(err);
-              }
-            });
-          }
-        }
-    )
-  }
+    deleteTournament(tournament: Tournament) {
+        const dialogRef = this.dialog.open(ConfirmationDialogComponent);
+        dialogRef.afterClosed().subscribe(
+            result => {
+                if (result) {
+                    this.tournamentService.deleteTournament(tournament.id).subscribe({
+                        next: (resp) => {
+                            this.tournamentService.getTournaments().subscribe(tournaments => {
+                                this.tournaments = tournaments;
+                                this.getTournaments()
+                            });
+                        },
+                        error: err => {
+                            console.error(err);
+                        }
+                    });
+                }
+            }
+        )
+    }
 
-  saveTournament() {
-    const dialogRef = this.dialog.open(TournamentAddDialogComponent, {
-      height: '500px',
-      width: '600px',
-    });
-    dialogRef.afterClosed().subscribe({
-      next: data => {
-        this.getTournaments();
-      },
-      error: err => {
-        console.log(err);
-      }
-    });
-  }
+    saveTournament() {
+        const dialogRef = this.dialog.open(TournamentAddDialogComponent, {
+            height: '500px',
+            width: '600px',
+        });
+        dialogRef.afterClosed().subscribe({
+            next: data => {
+                this.getTournaments();
+            },
+            error: err => {
+                console.log(err);
+            }
+        });
+    }
 
-  updateTournament(tournament: Tournament) {
-    const dialogRef = this.dialog.open(TournamentEditDialogComponent);
-    dialogRef.componentInstance.tournament = tournament;
-    dialogRef.afterClosed().subscribe({
-      next: data => {
-        this.getTournaments();
-      },
-      error: err => {
-        console.log(err);
-      }
-    });
-  }
+    updateTournament(tournament: Tournament) {
+        const dialogRef = this.dialog.open(TournamentEditDialogComponent);
+        dialogRef.componentInstance.tournament = tournament;
+        dialogRef.afterClosed().subscribe({
+            next: data => {
+                this.getTournaments();
+            },
+            error: err => {
+                console.log(err);
+            }
+        });
+    }
 
-  onStatusChange($event: MatSelectChange, id : number) {
-    this.playerService.notifyPlayers(id, $event.value).subscribe((
-        data => {
-          this.getTournaments();
-          //this.dataSource.data = this.tournaments;
-          //console.log(this.dataSource.data);
-        }
-    ))
-  }
+    onStatusChange($event: MatSelectChange, tournament : Tournament) {
+        this.tournamentService.updateTournament(tournament.id, tournament).subscribe(
+            (tournament => {
+                this.playerService.notifyPlayers(tournament.id, $event.value).subscribe((
+                    data => {
+                        this.getTournaments();
+                    }
+                ));
+            })
+        )
+
+
+    }
 }

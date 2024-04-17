@@ -8,13 +8,6 @@ import {InscriptionDialogComponent} from "../../inscription-dialog/inscription-d
   styleUrls: ['./tournament-home.component.css']
 })
 export class TournamentHomeComponent {
-  constructor(private dialog:MatDialog) {
-  }
-  openDialog(){
-
-    this.dialog.open(InscriptionDialogComponent,{
-      width:'60%',
-      height:'400px'
-    })
+  constructor() {
   }
 }

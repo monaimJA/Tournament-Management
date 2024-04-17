@@ -1,0 +1,63 @@
+<div class="container">
+<h2 mat-dialog-title>Inscription</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="inscriptionForm" (ngSubmit)="handleInscription()">
+
+    <h4>Equipes</h4>
+    <div class="line">
+      <div class="space">
+          <mat-form-field style="width: 100%;" >
+            <input matInput formControlName="name" placeholder="Nom d'equipe" style="width: 100%;" >
+            <mat-error *ngIf="inscriptionForm.get('name')?.hasError('required')">name is required</mat-error>
+          </mat-form-field>
+      </div>
+          <div class="space">
+          <mat-form-field style="width: 100%;">
+            <mat-label>Site</mat-label>
+            <mat-select formControlName="site" style="width: 100%;" required>
+              <mat-option *ngFor="let site of sites" [value]="site">
+                {{ site.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+    <h4>Joueurs</h4>
+    <div formArrayName="players">
+      <div *ngIf="inscriptionForm.get('players')">
+      <!-- <div *ngFor="let player of  inscriptionForm.get('players')!.controls; let i = index;"> -->
+        <div *ngFor="let player of  players.controls; let i = index;">
+        <div [formGroupName]="i">
+          <mat-form-field>
+            <input matInput formControlName="firstName" placeholder="Nom du joueur">
+            <mat-error *ngIf="player.get('firstName')?.invalid && player.get('firstName')?.touched">First name is required</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput formControlName="lastName" placeholder="Prénom du joueur">
+            <mat-error *ngIf="player.get('lastName')?.invalid && player.get('lastName')?.touched">First name is required</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput formControlName="email" placeholder="Email du joueur">
+          <mat-error *ngIf="player.get('email')?.invalid && player.get('email')?.touched">email invalid</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input  matInput formControlName="phoneNumber" placeholder="Numéro">
+            <mat-error *ngIf="player.get('phoneNumber')?.invalid && player.get('phoneNumber')?.touched">invalid number</mat-error>
+          </mat-form-field>
+          <button type="button" color="primary" mat-raised-button (click)="removePlayer(i)">Remove Player</button>
+        </div>
+      </div>
+    </div>
+    <button type="button" color="primary" class="mt-1" mat-raised-button (click)="addPlayer()">Add Player</button>
+    </div>
+    <div class="buttonContainer">
+    <button mat-raised-button [disabled]="!isFormValid()" onclick="handleInscription()">Enregistrer</button>
+  </div>
+  </form>
+</mat-dialog-content>
+
+</div>
+
+

@@ -10,7 +10,7 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
                 path: '', component: AppLayoutComponent,
                 children: [
                     { path: 'dashboard', loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule) },
-                    { path: 'home', loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule) }
+                    {path:'home',loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule) },
                 ]
             },
             { path: 'notfound', component: NotfoundComponent },

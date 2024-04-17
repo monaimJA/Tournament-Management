@@ -1,6 +1,8 @@
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
+import {LoginService} from "../core/services/login/login.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-menu',
@@ -9,17 +11,33 @@ import { LayoutService } from './service/app.layout.service';
 export class AppMenuComponent implements OnInit {
 
     model: any[] = [];
+    model1: any[] = [];
 
-    constructor(public layoutService: LayoutService) { }
+    constructor(public layoutService: LayoutService,private loginService:LoginService) { }
 
+    isAuthenticated(): boolean {
+        return this.loginService.isAuthenticated();
+    }
     ngOnInit() {
+        this.model1 = [
+            {
+                label: 'Home',
+                items: [
+                    { label: 'Inscription', icon: 'pi pi-fw pi-home', routerLink: ['/home']},
+                    { label: 'Latest Matches', icon: 'pi pi-fw pi-id-card', routerLink: ['/home/latest-matches'] },
+                    { label: 'Login', icon: 'pi pi-fw pi-check-square', routerLink: ['/home/login'] }
+
+                ]
+            }
+    ]
         this.model = [
             {
                 label: 'Dashboard',
                 items: [
                     { label: 'Players', icon: 'pi pi-fw pi-home', routerLink: ['/dashboard/players']},
                     { label: 'Tournament', icon: 'pi pi-fw pi-id-card', routerLink: ['/dashboard/tournament'] },
-                    { label: 'Scores', icon: 'pi pi-fw pi-check-square', routerLink: ['/dashboard/scores'] }
+                    { label: 'Matches', icon: 'pi pi-fw pi-check-square', routerLink: ['/dashboard/scores'] },
+                    { label: 'Teams', icon: 'pi pi-fw pi-id-card', routerLink: ['/dashboard/teams'] }
 
                 ]
             }

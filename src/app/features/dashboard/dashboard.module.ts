@@ -24,6 +24,7 @@ import {ErrorDialogComponent} from './tournament/error-dialog/error-dialog.compo
 import {ScoresComponent} from "./scores/scores.component";
 import {BrowserModule} from "@angular/platform-browser";
 import {TableModule} from "primeng/table";
+import {TeamListComponent} from "./team/team-list/team-list.component";
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import {TableModule} from "primeng/table";
     TournamentEditDialogComponent,
     ErrorDialogComponent,
     ScoresComponent,
+      TeamListComponent
   ],
     imports: [
         CommonModule,
