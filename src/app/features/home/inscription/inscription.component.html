@@ -40,7 +40,7 @@
           </mat-form-field>
           <mat-form-field>
             <input matInput formControlName="email" placeholder="Email du joueur">
-          <mat-error *ngIf="player.get('email')?.invalid && player.get('email')?.touched">email invalid</mat-error>
+              <mat-error *ngIf="player.get('email')?.invalid && player.get('email')?.hasError('invalidDomain')  && player.get('email')?.touched">email invalid</mat-error>
           </mat-form-field>
           <mat-form-field>
             <input  matInput formControlName="phoneNumber" placeholder="Numéro">

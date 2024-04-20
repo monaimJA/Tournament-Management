@@ -4,7 +4,7 @@
 
     <div class="space">
       <mat-form-field style="width: 80%;">
-        <mat-label>Choisir un tournoi</mat-label>
+        <mat-label>Select a tournament</mat-label>
         <mat-select (selectionChange)="onTournoiSelect($event.value)">
           <mat-option *ngFor="let tournoi of tournois" [value]="tournoi.id">{{ tournoi.label }}</mat-option>
         </mat-select>
@@ -14,13 +14,13 @@
 
 <div *ngIf="equipes.length>0">
   <div class="center">
-    <h3>team list</h3>
+    <h3>Team list</h3>
   </div>
   <table class="mat-table" >
     <thead>
       <tr>
-        <th class="mat-header-cell">equipe</th>
-        <th class="mat-header-cell">site</th>
+        <th class="mat-header-cell">Team</th>
+        <th class="mat-header-cell">Site</th>
       </tr>
     </thead>
     <tbody>
@@ -35,7 +35,7 @@
 
   <div *ngIf="joueurs.length>0 && equipes.length>0">
     <div class="center">
-      <h3>player list</h3>
+      <h3>Player list</h3>
     </div>
     <table mat-table [dataSource]="dataSource" class="custom-table">
       <ng-container matColumnDef="firstName">

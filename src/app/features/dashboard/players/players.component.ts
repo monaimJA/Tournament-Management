@@ -36,6 +36,7 @@ export class PlayersComponent implements OnInit{
   }
   onTournoiSelect(event: any) {
     this.teamService.getTeamsIntournament(event).subscribe((data: any[]) => {
+
       this.equipes = data;
       if (this.equipes.length > 0) {
         this.playerService.getAllPlayersOfATeam(this.equipes[0].id).subscribe((data: any[]) => {

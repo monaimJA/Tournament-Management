@@ -1,5 +1,5 @@
 import { Component, ErrorHandler, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Site, Team } from 'src/app/core/models/team';
 import { TeamService } from 'src/app/core/services/team/team.service';
@@ -35,7 +35,7 @@ export class InscriptionComponent implements OnInit {
     return this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+        email: ['', [Validators.required, Validators.email, this.emailDomainValidator]],
       phoneNumber: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
     });
   }
@@ -77,10 +77,19 @@ siteList(){
       console.log("ararararararararrarara",this.sites);
   });
 }
+    emailDomainValidator(control: FormControl) {
+        const email = control.value;
+        if (email && !email.endsWith('@capgemini.com')) {
+            return { 'invalidDomain': true };
+        }
+        return null;
+    }
 
 isFormValid(): boolean {
   return this.inscriptionForm.valid;
 }
+
+
 
 
 

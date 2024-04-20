@@ -5,6 +5,7 @@ import {debounceTime, Subscription} from "rxjs";
 import {ProductService} from "../../../demo/service/product.service";
 import {LayoutService} from "../../../layout/service/app.layout.service";
 import {PlayerService} from "../../../core/services/player/player.service";
+import {TournamentService} from "../../../core/services/tournament/tournament.service";
 
 @Component({
   selector: 'app-stats',
@@ -13,6 +14,8 @@ import {PlayerService} from "../../../core/services/player/player.service";
 })
 export class StatsComponent {
     items!: MenuItem[];
+
+    tournament:any;
 
     products!: Product[];
 
@@ -27,7 +30,7 @@ export class StatsComponent {
     subscription!: Subscription;
 
     constructor(private productService: ProductService, public layoutService: LayoutService,
-                private playerService:PlayerService) {
+                private playerService:PlayerService,private tournamentService:TournamentService) {
         this.subscription = this.layoutService.configUpdate$
             .pipe(debounceTime(25))
             .subscribe((config) => {
@@ -55,6 +58,12 @@ export class StatsComponent {
             },
             (error)=>{
                 console.log(error);
+            })
+        this.tournamentService.getCurrentTournament().subscribe((tournament)=>{
+            this.tournament=tournament;
+        },
+            (error)=>{
+            console.log(error);
             })
     }
 
